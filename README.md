@@ -2,8 +2,6 @@
 
 #### By _**Amber Wilwand**_
 
-#### _Tap Room Site that... _
-
 ## Technologies Used
 
 - _HTML_
