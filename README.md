@@ -20,7 +20,7 @@ _A React app that can keep track of tap room quantity. This application is able 
 
 ## Setup/Installation Requirements
 
-- \_Clone this repository
+- _Clone this repository_
 - _Open project in the code editor of your choice._
 - _In the root directory enter the command npm install_
 - _Then run npm start to view in the browser._
