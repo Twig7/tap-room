@@ -31,12 +31,8 @@ _A React app that can keep track of tap room quantity. This application is able 
 
 - _No known issues_
 
-## Contact Me
+## Contact
 
-_Let me know if you run into any issues or have questions, ideas or concerns:_
+_Questions? Concerns? Contact me at 1234@internet.com_
 
-## License
-
-_{Let people know what to do if they run into any issues or have questions, ideas or concerns. Encourage them to contact you or make a contribution to the code.}_
-
-Copyright (c) _June 2022_
+Copyright (c) _10/23/2021_ _Amber Wilwand_
