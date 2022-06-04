@@ -18,6 +18,8 @@ _A React app that can keep track of tap room quantity. This application is able 
 
 ## Component Diagram
 
+![Image Name](https://github.com/Twig7/tap-room/blob/main/src/Img/Diagram.png?raw=true)
+
 ## Setup/Installation Requirements
 
 - _Clone this repository_
