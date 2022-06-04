@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Tap from "./Tap";
 
 function TapBrand(props) {
-    const {tap, onClickingEdit, onClickingINcrease, onClickingDecrease, onClickingDelete} = props;
+    const {tap, onClickingEdit, onClickingIncrease, onClickingDecrease, onClickingDelete} = props;
     const stock = tap.quantity === 0 ? "We're all Out" : tap.quantity;
     const purchaseButton = tap.quantity === 0 ? <p></p> : <button onClick={() => onClickingDecrease(tap.id)}>Purchase</button>
     return (

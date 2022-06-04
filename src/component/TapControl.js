@@ -60,6 +60,22 @@ class TapControl extends React.Component {
     });
     }
 
+    handleIncreasingTapQuantity = (id) => {
+        const selectedTap = this.state.mainTapList.filter(tap => tap.id === id)[0]
+        selectedTap.stock++;
+        const newMainTapList = this.state.mainTapList.filter(tap => tap.id !==id).concat(selectedTap);
+        this.setState({mainTapList:newMainTapList});
+    }
+
+    handleDecreasingTapQuantity = (id) => {
+        const selectedTap = this.state.mainTapList.filter(tap => tap.id === id)[0]
+        {
+            selectedTap.stock--;
+            const newMainTapList = this.state.mainTapList.filter(tap => tap.id !==id).concat(selectedTap);
+            this.setState({mainTapList:newMainTapList});
+        }
+    }
+
     render (){
         let currentlyVisibleState = null;
         let buttonText = null;
@@ -71,6 +87,8 @@ class TapControl extends React.Component {
             currentlyVisibleState =
             <TapBrand
             tap = {this.state.selectedTap}
+            onClickingDecrease = {this.handleDecreasingTapQuantity}
+            onClickingIncrease = {this.handleIncreasingTapQuantity}
             onClickingDelete = {this.handleDeletingTap}
             onClickingEdit = {this.handleEditClick} />
             buttonText="Return to Ticket List";
