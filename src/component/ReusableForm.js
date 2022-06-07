@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 function ReusableForm(props) {
     return (
         <React.Fragment>
@@ -20,7 +21,8 @@ function ReusableForm(props) {
                 type = 'number'
                 name = 'quantity'
                 placeholder = 'Total tap left'/>
-                <textarea
+                <input
+                type = 'text'
                 name='brand'
                 placeholder='Tap brand' />
                 <button type ='submit'>{props.buttonText}</button>
@@ -31,7 +33,8 @@ function ReusableForm(props) {
 
 ReusableForm.propTypes = {
     formSubmissionHandler: PropTypes.func,
-    buttonText: PropTypes.string
+    buttonText: PropTypes.string,
+    formText: PropTypes.string
 };
 
 export default ReusableForm;

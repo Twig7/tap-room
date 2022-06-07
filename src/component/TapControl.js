@@ -3,13 +3,15 @@ import NewTapForm from './NewTapForm';
 import TapList from './TapList';
 import TapBrand from "./TapBrand";
 import EditTapForm from './EditTapForm';
+import TapInfo from './TapInfo';
 
 class TapControl extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
             formVisibleOnPage: false,
-            mainTapList: [],
+            mainTapList: TapInfo,
             selectedTap: null,
             editing: false
             
@@ -82,16 +84,15 @@ class TapControl extends React.Component {
         
         if (this.state.editing) {
             currentlyVisibleState = <EditTapForm tap = {this.state.selectedTap} onEditTap={this.handleEditingTapInList}/>
-            buttonText = "Return to Ticket List";
+            buttonText = "Return to Tap List";
         } else if (this.state.selectedTap != null) {
-            currentlyVisibleState =
-            <TapBrand
+            currentlyVisibleState = <TapBrand
             tap = {this.state.selectedTap}
             onClickingDecrease = {this.handleDecreasingTapQuantity}
             onClickingIncrease = {this.handleIncreasingTapQuantity}
             onClickingDelete = {this.handleDeletingTap}
             onClickingEdit = {this.handleEditClick} />
-            buttonText="Return to Ticket List";
+            buttonText="Return to Tap List";
         }
         else if (this.state.formVisibleOnPage) {
             currentlyVisibleState = <NewTapForm onNewTapCreation={this.handleAddingNewTapToList} />

@@ -25,4 +25,4 @@ TapList.propTypes = {
   onTapSelection: PropTypes.func
 };
 
-export default TapList;
+export default TapList
