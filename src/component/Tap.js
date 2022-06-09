@@ -16,14 +16,14 @@ function Tap(props){
 
   return (
     <React.Fragment>
-      <div onClick = {() => props.whenTapClicked(props.id)}>
         <b>{alert}</b>
         <h3>{props.name}</h3>
         <p>Brand: {props.brand}</p>
         <p>Alcohol Content: {props.alcoholContent}%</p>
         <p>Price: ${props.price}</p>
         <h5>Tap: {props.quantity} left</h5>
-      </div>
+        <button onClick = {() => props.whenTapClicked(props.id)}>Get the deets</button>
+      <button variant="success" onClick = {() => props.whenDecrementingTapClicked(props.id)}>Buy some of this!</button>
     </React.Fragment>
   );
 }
@@ -35,7 +35,8 @@ Tap.propType = {
   alcoholContent: PropTypes.number,
   price: PropTypes.number,
   id: PropTypes.string,
-  whenTapClicked: PropTypes.func
+  whenTapClicked: PropTypes.func,
+  whenDecrementingTapClicked: PropTypes.func
 };
 
 export default Tap;

@@ -2,7 +2,6 @@ import React from 'react';
 import NewTapForm from './NewTapForm';
 import TapList from './TapList';
 import TapBrand from "./TapBrand";
-import EditTapForm from './EditTapForm';
 import TapInfo from './TapInfo';
 
 class TapControl extends React.Component {
@@ -10,7 +9,7 @@ class TapControl extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            formVisibleOnPage: false,
+            formVisible: false,
             mainTapList: TapInfo,
             selectedTap: null,
             editing: false
@@ -20,18 +19,17 @@ class TapControl extends React.Component {
     handleClick = () => {
         if (this.state.selectedTap != null) {
             this.setState({
-                formVisibleOnPage: false,
+                formVisible: false,
                 selectedTap: null,
-                editing: false
             });
         } else {
             this.setState(prevState => ({
-                formVisibleOnPage: !prevState.formVisibleOnPage,
+                formVisible: !prevState.formVisible,
             }));
         }
     }
-    handleChangingSelectedTap = (id) => {
-        const selectedTap = this.state.mainTapList.filter(tap => tap.id === id)[0];
+    handleChangingSelectedTap = (tapId) => {
+        const selectedTap = this.state.mainTapList.filter(tap => tap.id === tapId)[0];
         this.setState({selectedTap: selectedTap});
     }
     handleAddingNewTapToList = (newTap) => {
@@ -39,73 +37,41 @@ class TapControl extends React.Component {
         this.setState({
             mainTapList: newMainTapList,
             formVisibleOnPage: false
-        })
-    }
-    handleDeletingTap = (id) => {
-        const newMainTapList = this.state.mainTapList.filter(tap => tap.id !== id);
-        this.setState({
-            mainTapList: newMainTapList,
-            selectedTap: null
         });
     }
-    handleEditClick = () => {
-        this.setState({editing: true});
-    }
-    handleEditingTapInList = (tapToEdit) => {
-        const editedMainTapList = this.state.mainTapList
-        .filter(tap => tap.id !== this.state.selectedTap.id)
-        .concat(tapToEdit);
-    this.setState({
-        mainTapList: editedMainTapList,
-        editing: false,
-        selectedTap:null
-    });
-    }
-
-    handleIncreasingTapQuantity = (id) => {
-        const selectedTap = this.state.mainTapList.filter(tap => tap.id === id)[0]
-        selectedTap.stock++;
-        const newMainTapList = this.state.mainTapList.filter(tap => tap.id !==id).concat(selectedTap);
-        this.setState({mainTapList:newMainTapList});
+    
+    handleDecreasingTapQuantity = tapId => {
+        const newMainTapList = this.state.mainTapList.map((element) => {
+            if (element.id === tapId && element.quantity >= 1) {
+                const tap = {...element, quantity: element.quantity -1}
+                return tap;
+            }
+            return element;
+        });
+        this.setState({
+            mainTapList: newMainTapList
+        });
     }
 
-    handleDecreasingTapQuantity = (id) => {
-        const selectedTap = this.state.mainTapList.filter(tap => tap.id === id)[0]
-        {
-            selectedTap.stock--;
-            const newMainTapList = this.state.mainTapList.filter(tap => tap.id !==id).concat(selectedTap);
-            this.setState({mainTapList:newMainTapList});
-        }
-    }
-
-    render (){
+    render () {
         let currentlyVisibleState = null;
         let buttonText = null;
         
-        if (this.state.editing) {
-            currentlyVisibleState = <EditTapForm tap = {this.state.selectedTap} onEditTap={this.handleEditingTapInList}/>
-            buttonText = "Return to Tap List";
-        } else if (this.state.selectedTap != null) {
-            currentlyVisibleState = <TapBrand
-            tap = {this.state.selectedTap}
-            onClickingDecrease = {this.handleDecreasingTapQuantity}
-            onClickingIncrease = {this.handleIncreasingTapQuantity}
-            onClickingDelete = {this.handleDeletingTap}
-            onClickingEdit = {this.handleEditClick} />
+        if (this.state.selectedTap !== null) {
+            currentlyVisibleState = <TapBrand tap={this.state.selectedTap} />
             buttonText="Return to Tap List";
+        }else if (this.state.formVisible) {
+            currentlyVisibleState = <NewTapForm OnNewTapCreation={this.handleAddingNewTapToList} />
+            buttonText="Return to Tap List";
+        } else {
+            currentlyVisibleState = <TapList tapList={this.state.mainTapList} onTapSelection={this.handleChangingSelectedTap} onDecrementingTap={this.handleDecreasingTapQuantity} />
+            buttonText="Buy some of this!";
         }
-        else if (this.state.formVisibleOnPage) {
-            currentlyVisibleState = <NewTapForm onNewTapCreation={this.handleAddingNewTapToList} />
-            buttonText = "Return to Tap List";
-        }
-        else {
-            currentlyVisibleState = <TapList tapList={this.state.mainTapList} onTapSelection = {this.handleChangingSelectedTap} />
-            buttonText = "Add Tap"
-        }
+        
         return (
             <React.Fragment>
                 {currentlyVisibleState}
-                <button onClick={this.handleClick}>{buttonText}</button>
+                <button onClick={this.handleClick}>{buttonText}</button>{" "}
             </React.Fragment>
         );
     }

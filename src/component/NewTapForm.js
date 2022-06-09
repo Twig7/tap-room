@@ -11,7 +11,7 @@ function NewTapForm(props){
       brand: event.target.brand.value, 
       alcoholContent: parseInt(event.target.alcoholContent.value), 
       price: parseInt(event.target.price.value), 
-      quantity: parseInt(event.target.quantity.value), 
+      quantity: Math.floor(parseFloat(event.target.tap.value) * 124), 
       id: v4()});
   }
   return (

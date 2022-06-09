@@ -6,7 +6,7 @@ const TapInfo = [
     brand: "Idk",
     alcoholContent: 3,
     price: 5,
-    quantity: 10,
+    quantity: 55,
     id: v4()
   },
   {
@@ -14,7 +14,7 @@ const TapInfo = [
     brand: "Idk",
     alcoholContent: 5,
     price: 10,
-    quantity: 20,
+    quantity: 80,
     id: v4()
   },
   {
@@ -22,7 +22,7 @@ const TapInfo = [
     brand: "Idk",
     alcoholContent: 10,
     price: 50,
-    quantity: 5,
+    quantity: 15,
     id: v4()
   }
 ]

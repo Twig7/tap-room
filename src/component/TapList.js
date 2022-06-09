@@ -8,6 +8,7 @@ function TapList(props) {
       {props.tapList.map((tap) => 
         <Tap 
           whenTapClicked = {props.onTapSelection}
+          whenDecrementingTapClicked={props.onDecrementingTap}
           name = {tap.name}
           brand = {tap.brand}
           price = {tap.price}
@@ -22,7 +23,8 @@ function TapList(props) {
 
 TapList.propTypes = {
   tapList: PropTypes.array,
-  onTapSelection: PropTypes.func
+  onTapSelection: PropTypes.func,
+  onDecrementingTap: PropTypes.func
 };
 
 export default TapList
