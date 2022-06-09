@@ -65,7 +65,7 @@ class TapControl extends React.Component {
             buttonText="Return to Tap List";
         } else {
             currentlyVisibleState = <TapList tapList={this.state.mainTapList} onTapSelection={this.handleChangingSelectedTap} onDecrementingTap={this.handleDecreasingTapQuantity} />
-            buttonText="Buy some of this!";
+            buttonText="Add a new keg?";
         }
         
         return (
